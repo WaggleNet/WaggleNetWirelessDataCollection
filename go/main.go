@@ -25,12 +25,19 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
         fmt.Println(s)
     
         // Send a response
-        fmt.Fprintf(w, "Received request body:\n%s", bodyString)
+        fmt.Fprintf(w, "%s", s)
     
+}
+
+func getFiles(w http.ResponseWriter, r *http.Request) {
+    // Send a response
+    fmt.Fprintf(w, "%s", s)
+
 }
 
 func setupRoutes() {
     http.HandleFunc("/upload", uploadFile)
+    http.HandleFunc("/files", getFiles)
     http.ListenAndServe(":8080", nil)
 }
 
