@@ -3,7 +3,10 @@ import time
 
 m = MQTT('localhost', 1883)
 
-m.subscribe("/test-sensor")
+def mqtt_callback(client, userdata, msg):
+    print(msg.payload)
+
+m.subscribe("/test-sensor", mqtt_callback)
 time.sleep(1)
 
 for i in range(100):
