@@ -1,12 +1,12 @@
 from pymongo import MongoClient
 from datetime import datetime
 
-HOST = "temp"
-PORT = "temp"
-DATABASE_NAME = "temp"
+HOST = "127.0.0.1"
+PORT = 27017
+DATABASE_NAME = "hive-data"
 
 db_client = MongoClient(HOST, PORT)
-db = db_client['hive-data']
+db = db_client[DATABASE_NAME]
 
 def upload_sensor_data(hive_id: str, sensor_id: str, timestamp: int, sensor_value) -> None:
     data = {
@@ -15,7 +15,7 @@ def upload_sensor_data(hive_id: str, sensor_id: str, timestamp: int, sensor_valu
         'timestamp': timestamp, # unix timestamp in ms of when the data was retrieved
         'value': sensor_value, # sensor value
     }
-    db.sensor_data.insert_one(data)
+    result = db.sensor_data.insert_one(data)
 
 def get_sensor_data(hive_id: str, sensor_id: str, num_data_points: int, 
                     recent: bool=True, begin_time: int=0, end_time: int=-1) -> list:
