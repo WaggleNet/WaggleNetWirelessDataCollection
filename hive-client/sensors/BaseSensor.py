@@ -1,10 +1,10 @@
 
 class BaseSensor():
-    def __init__():
+    def __init__(self):
         print("new sensor")
 
-    def poll():
+    def poll(self):
         raise NotImplementedError()
 
-    def getI2C(pin):
+    def getI2C(self, pin):
         pass
