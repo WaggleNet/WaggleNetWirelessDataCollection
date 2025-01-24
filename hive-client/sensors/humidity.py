@@ -47,7 +47,7 @@ class TMG_data():
     def init_TMG(self):
         print(f"instance of {self.name} created")
 
-    def setup(self):
+    def setup(self, rfm9x):
         
         try:
             self.i2c = busio.I2C(sda=board.GP12, scl=board.GP13)
