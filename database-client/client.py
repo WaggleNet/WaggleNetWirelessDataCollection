@@ -12,7 +12,7 @@ def start_client() -> None:
    
     print("Listening to MQTT broker for new data, CTRL-C to exit")
     while True:
-        time.sleep(1)
+        time.sleep(0.01)
 
 if __name__ == "__main__":
     start_client()

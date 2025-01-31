@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+message SensorData {
+    string hive_id = 1;
+    string sensor_id = 2;
+    int64 timestamp = 3; // in ms
+    oneof value {
+        int32 int_value = 4;
+        float float_value = 5;
+        bytes image_data = 6;
+    }
+}

@@ -9,13 +9,12 @@ db_client = MongoClient(HOST, PORT)
 db = db_client[DATABASE_NAME]
 
 def upload_sensor_data(hive_id: str, sensor_id: str, timestamp: int, sensor_value) -> None:
-    data = {
+    db.sensor_data.insert_one({
         'hive_id': hive_id, # identifying string for which hive
         'sensor_id': sensor_id, # identifying string for which sensor within a hive
         'timestamp': timestamp, # unix timestamp in ms of when the data was retrieved
         'value': sensor_value, # sensor value
-    }
-    result = db.sensor_data.insert_one(data)
+    })
 
 def get_sensor_data(hive_id: str, sensor_id: str, num_data_points: int, 
                     recent: bool=True, begin_time: int=0, end_time: int=-1) -> list:
